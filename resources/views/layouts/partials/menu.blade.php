@@ -57,6 +57,44 @@
     </ul>
 </li>
 
+<li class="nav-item {{ request()->routeIs('student.index') ? 'menu-is-opening menu-open' : '' }}">
+    <a href="#" class="nav-link {{ request()->routeIs('student.index') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <p>
+            Students
+            <i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview" style="display: block;">
+        <li class="nav-item">
+            <a href="{{ route('student.index') }}"
+                class="nav-link {{ request()->routeIs('student.index') ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Students List</p>
+            </a>
+        </li>
+    </ul>
+</li>
+
+<li class="nav-item {{ request()->routeIs('teacher.index') ? 'menu-is-opening menu-open' : '' }}">
+    <a href="#" class="nav-link {{ request()->routeIs('teacher.index') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <p>
+            Teachers
+            <i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview" style="display: block;">
+        <li class="nav-item">
+            <a href="{{ route('teacher.index') }}"
+                class="nav-link {{ request()->routeIs('teacher.index') ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Teachers List</p>
+            </a>
+        </li>
+    </ul>
+</li>
+
 
 <li class="nav-item {{ request()->routeIs('user.index') ? 'menu-is-opening menu-open' : '' }}">
     <a href="#" class="nav-link {{ request()->routeIs('user.index') ? 'active' : '' }}">

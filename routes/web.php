@@ -4,6 +4,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/permissions/edit/{data}', [PermissionController::class, 'edit'])->name('permissions.edit');
     Route::post('/permissions/update/{data}', [PermissionController::class, 'update'])->name('permissions.update');
     Route::get('/permissions/delete/{data}', [PermissionController::class, 'delete'])->name('permissions.delete');
+
+    Route::get('/student', [StudentController::class, 'index'])->name('student.index');
+    Route::get('/student/create', [StudentController::class, 'create'])->name('student.create');
+    Route::post('/student/store', [StudentController::class, 'store'])->name('student.store');
+    Route::get('/student/edit/{data}', [StudentController::class, 'edit'])->name('student.edit');
+    Route::post('/student/update/{data}', [StudentController::class, 'update'])->name('student.update');
+    Route::get('/student/delete/{data}', [StudentController::class, 'delete'])->name('student.delete');
+
+    Route::get('/teacher', [TeacherController::class, 'index'])->name('teacher.index');
+    Route::get('/teacher/create', [TeacherController::class, 'create'])->name('teacher.create');
+    Route::post('/teacher/store', [TeacherController::class, 'store'])->name('teacher.store');
+    Route::get('/teacher/edit/{data}', [TeacherController::class, 'edit'])->name('teacher.edit');
+    Route::post('/teacher/update/{data}', [TeacherController::class, 'update'])->name('teacher.update');
+    Route::get('/teacher/delete/{data}', [TeacherController::class, 'delete'])->name('teacher.delete');
 
     Route::get('/user', [UserController::class, 'index'])->name('user.index');
     Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
