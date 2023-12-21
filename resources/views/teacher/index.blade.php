@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-Permission
+Teacher
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -8,11 +8,12 @@ Permission
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header border-0 bg-info">
-                        <h3 class="card-title">Permissions</h3>
+                        <h3 class="card-title">Teachers</h3>
 
-                        <form class="form-inline ml-5" action="{{ route('permissions.index') }}">
+                        <form class="form-inline ml-5" action="{{ route('teacher.index') }}">
                             @csrf
                             <div class="row">
+
                                 <div class="input-group input-group-sm">
                                     <input class="form-control form-control-navbar" type="search" name="search"
                                         placeholder="Search" aria-label="Search" value="{{ request()->search }}">
@@ -39,48 +40,54 @@ Permission
                             </div>
                         </form>
                     </div>
-                    <div class="card-body table-responsive p-0 pt-4">
-                        <table id="permissions_table" class="table table-striped table-valign-middle">
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-striped table-valign-middle">
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Title</th>
+                                    <th>user_name</th>
+                                    <th>first_name</th>
+                                    <th>last_name</th>
+                                    <th>email</th>
+                                    <th>password</th>
                                     <th>Created at</th>
                                     <th>Updated at</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
+
                             <tbody>
-                                @foreach ($permissions as $permission)
+                                @foreach ($teachers as $teacher)
                                     <tr>
-                                        <td>{{ $permission->id }}</td>
-                                        <td>{{ $permission->title }}</td>
-                                        <td>{{ $permission->created_at }}</td>
-                                        <td>{{ $permission->updated_at }}</td>
+                                        <td>{{ $teacher->id }}</td>
+                                        <td>{{ $teacher->user_name }}</td>
+                                        <td>{{ $teacher->first_name }}</td>
+                                        <td>{{ $teacher->last_name }}</td>
+                                        <td>{{ $teacher->email }}</td>
+                                        <td>{{ $teacher->password }}</td>
+                                        <td>{{ $teacher->created_at }}</td>
+                                        <td>{{ $teacher->updated_at }}</td>
                                         <td>
-                                            @can('edit_role')
-                                                <a class="btn btn-success" href="{{ route('permissions.edit', $permission->id) }}">Edit</a>
-                                                <button type="button" class="btn btn-primary"
-                                                    onclick="editRole('{{ $permission->id }}','{{ $permission->title }}')">
-                                                    Edit Modal
-                                                </button>
+                                            @can('edit_permission')
+                                                <a class="btn btn-success"
+                                                    href="{{ route('teachers.edit', $teacher->id) }}">Edit</a>
                                             @endcan
-                                            @can('delete_role')
+                                            @can('delete_permission')
                                                 <a class="btn btn-danger"
-                                                    href="{{ route('permissions.delete', $permission->id) }}">Delete</a>
+                                                    href="{{ route('teachers.delete', $teacher->id) }}">Delete</a>
                                             @endcan
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        {{-- {{ $permissions->links() }} --}}
+                   {{ $teachers->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @include('permissions.partials.create')
-    @include('permissions.partials.edit')
+    @include('teacher.partials.edit')
+    @include('teacher.partials.create')
 @endsection
 

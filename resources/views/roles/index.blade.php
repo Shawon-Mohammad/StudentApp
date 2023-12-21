@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-header border-0 bg-info">
                         <h3 class="card-title">Roles</h3>
-              
+
                         <form class="form-inline ml-5" action="{{ route('roles.index') }}">
                             @csrf
                             <div class="row">
@@ -60,10 +60,6 @@
                                         <td>
                                             @can('edit_role')
                                                 <a class="btn btn-success" href="{{ route('roles.edit', $role->id) }}">Edit</a>
-                                                <button type="button" class="btn btn-primary"
-                                                    onclick="editRole('{{ $role->id }}','{{ $role->title }}')">
-                                                    Edit Modal
-                                                </button>
                                             @endcan
                                             @can('delete_role')
                                                 <a class="btn btn-danger"
