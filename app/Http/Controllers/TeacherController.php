@@ -14,7 +14,7 @@ class TeacherController extends Controller
     {
         $teachers = Teacher::query();
         if($request->filled('search') ){
-            $teachers = $teachers->where('title','like','%'.$request->search);
+            $teachers = $teachers->where('user_name','like','%'.$request->search);
         }
         if($request->filled('from_date') && $request->filled('to_date') ){
             $teachers = $teachers->whereDate('created_at','>',$request->from_date)

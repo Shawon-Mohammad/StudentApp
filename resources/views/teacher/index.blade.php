@@ -70,11 +70,11 @@ Teacher
                                         <td>
                                             @can('edit_permission')
                                                 <a class="btn btn-success"
-                                                    href="{{ route('teachers.edit', $teacher->id) }}">Edit</a>
+                                                    href="{{ route('teacher.edit', $teacher->id) }}">Edit</a>
                                             @endcan
                                             @can('delete_permission')
                                                 <a class="btn btn-danger"
-                                                    href="{{ route('teachers.delete', $teacher->id) }}">Delete</a>
+                                                    href="{{ route('teacher.delete', $teacher->id) }}">Delete</a>
                                             @endcan
                                         </td>
                                     </tr>

@@ -14,7 +14,7 @@ class StudentController extends Controller
     {
         $students = Student::query();
         if($request->filled('search') ){
-            $students = $students->where('title','like','%'.$request->search);
+            $students = $students->where('user_name','like','%'.$request->search);
         }
         if($request->filled('from_date') && $request->filled('to_date') ){
             $students = $students->whereDate('created_at','>',$request->from_date)

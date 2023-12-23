@@ -10,7 +10,7 @@ Student Create
                     <div class="card-header border-0 bg-info">
                         <h3 class="card-title">Create New Students</h3>
                         <div class="card-tools">
-                            <a href="{{ route('students.index') }}" class="btn btn-tool btn-primary bg-primary">
+                            <a href="{{ route('student.index') }}" class="btn btn-tool btn-primary bg-primary">
                                 <i class="fas fa-list"></i> List
                             </a>
 

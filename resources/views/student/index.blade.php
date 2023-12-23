@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-Student
+    Student
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -70,18 +70,18 @@ Student
                                         <td>
                                             @can('edit_student')
                                                 <a class="btn btn-success"
-                                                    href="{{ route('students.edit', $student->id) }}">Edit</a>
+                                                    href="{{ route('student.edit', $student->id) }}">Edit</a>
                                             @endcan
                                             @can('delete_student')
                                                 <a class="btn btn-danger"
-                                                    href="{{ route('students.delete', $student->id) }}">Delete</a>
+                                                    href="{{ route('student.delete', $student->id) }}">Delete</a>
                                             @endcan
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                   {{ $students->links() }}
+                        {{ $students->links() }}
                     </div>
                 </div>
             </div>
@@ -90,4 +90,3 @@ Student
     @include('student.partials.edit')
     @include('student.partials.create')
 @endsection
-
