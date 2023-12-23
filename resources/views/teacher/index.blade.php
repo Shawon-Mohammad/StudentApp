@@ -52,7 +52,7 @@ Teacher
                                     <th>password</th>
                                     <th>Created at</th>
                                     <th>Updated at</th>
-                                    <th>Action</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
 
@@ -67,12 +67,12 @@ Teacher
                                         <td>{{ $teacher->password }}</td>
                                         <td>{{ $teacher->created_at }}</td>
                                         <td>{{ $teacher->updated_at }}</td>
-                                        <td>
-                                            @can('edit_permission')
+                                        <td class="text-center">
+                                            @can('edit_teacher')
                                                 <a class="btn btn-success"
                                                     href="{{ route('teacher.edit', $teacher->id) }}">Edit</a>
                                             @endcan
-                                            @can('delete_permission')
+                                            @can('delete_teacher')
                                                 <a class="btn btn-danger"
                                                     href="{{ route('teacher.delete', $teacher->id) }}">Delete</a>
                                             @endcan
