@@ -9,7 +9,7 @@
                  </button>
              </div>
              <div class="modal-body">
-                 <form method="post" action="{{ route('student.store') }}">
+                 <form method="post" action="{{ route('students.store') }}">
                      @csrf
                      <div class="form-group mb-3">
                          <input type="text" class="form-control" placeholder="user_name" id="user_name"

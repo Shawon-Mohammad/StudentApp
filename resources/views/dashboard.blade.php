@@ -30,7 +30,6 @@
                         <h3 class="card-title">Information</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-success">Log out</button>
-
                             <a href="#" class="btn btn-tool btn-sm">
                                 <i class="fas fa-download"></i>
                             </a>

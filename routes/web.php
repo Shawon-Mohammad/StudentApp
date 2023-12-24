@@ -45,26 +45,26 @@ Route::middleware('auth')->group(function () {
     Route::post('/permissions/update/{data}', [PermissionController::class, 'update'])->name('permissions.update');
     Route::get('/permissions/delete/{data}', [PermissionController::class, 'delete'])->name('permissions.delete');
 
-    Route::get('/student', [StudentController::class, 'index'])->name('student.index');
-    Route::get('/student/create', [StudentController::class, 'create'])->name('student.create');
-    Route::post('/student/store', [StudentController::class, 'store'])->name('student.store');
-    Route::get('/student/edit/{data}', [StudentController::class, 'edit'])->name('student.edit');
-    Route::post('/student/update/{data}', [StudentController::class, 'update'])->name('student.update');
-    Route::get('/student/delete/{data}', [StudentController::class, 'delete'])->name('student.delete');
+    Route::get('/students', [StudentController::class, 'index'])->name('students.index');
+    Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
+    Route::post('/students/store', [StudentController::class, 'store'])->name('students.store');
+    Route::get('/students/edit/{data}', [StudentController::class, 'edit'])->name('students.edit');
+    Route::post('/students/update/{data}', [StudentController::class, 'update'])->name('students.update');
+    Route::get('/students/delete/{data}', [StudentController::class, 'delete'])->name('students.delete');
 
-    Route::get('/teacher', [TeacherController::class, 'index'])->name('teacher.index');
-    Route::get('/teacher/create', [TeacherController::class, 'create'])->name('teacher.create');
-    Route::post('/teacher/store', [TeacherController::class, 'store'])->name('teacher.store');
-    Route::get('/teacher/edit/{data}', [TeacherController::class, 'edit'])->name('teacher.edit');
-    Route::post('/teacher/update/{data}', [TeacherController::class, 'update'])->name('teacher.update');
-    Route::get('/teacher/delete/{data}', [TeacherController::class, 'delete'])->name('teacher.delete');
+    Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index');
+    Route::get('/teachers/create', [TeacherController::class, 'create'])->name('teachers.create');
+    Route::post('/teachers/store', [TeacherController::class, 'store'])->name('teachers.store');
+    Route::get('/teachers/edit/{data}', [TeacherController::class, 'edit'])->name('teachers.edit');
+    Route::post('/teachers/update/{data}', [TeacherController::class, 'update'])->name('teachers.update');
+    Route::get('/teachers/delete/{data}', [TeacherController::class, 'delete'])->name('teachers.delete');
 
-    Route::get('/user', [UserController::class, 'index'])->name('user.index');
-    Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
-    Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
-    Route::get('/user/edit/{data}', [UserController::class, 'edit'])->name('user.edit');
-    Route::post('/user/update/{data}', [UserController::class, 'update'])->name('user.update');
-    Route::get('/user/delete/{data}', [UserController::class, 'delete'])->name('user.delete');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/edit/{data}', [UserController::class, 'edit'])->name('users.edit');
+    Route::post('/users/update/{data}', [UserController::class, 'update'])->name('users.update');
+    Route::get('/users/delete/{data}', [UserController::class, 'delete'])->name('users.delete');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

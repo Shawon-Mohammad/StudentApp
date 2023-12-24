@@ -18,7 +18,7 @@
 </li>
 @endcanany
 
-@canany(['edit_role', 'delete_role'])
+@can('role_access')
 <li class="nav-item {{ request()->routeIs('roles.index') ? 'menu-is-opening menu-open' : '' }}">
     <a href="#" class="nav-link {{ request()->routeIs('roles.index') ? 'active' : '' }}">
         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -36,9 +36,9 @@
         </li>
     </ul>
 </li>
-@endcanany
+@endcan
 
-@canany(['edit_permissions', 'delete_permissions'])
+@canany(['permission_access'])
 <li class="nav-item {{ request()->routeIs('permissions.index') ? 'menu-is-opening menu-open' : '' }}">
     <a href="#" class="nav-link {{ request()->routeIs('permissions.index') ? 'active' : '' }}">
         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -59,9 +59,9 @@
 </li>
 @endcanany
 
-@canany(['edit_student', 'delete_student'])
-<li class="nav-item {{ request()->routeIs('student.index') ? 'menu-is-opening menu-open' : '' }}">
-    <a href="#" class="nav-link {{ request()->routeIs('student.index') ? 'active' : '' }}">
+@canany(['student_create','student_edit', 'student_delete', 'student_access'])
+<li class="nav-item {{ request()->routeIs('students.index') ? 'menu-is-opening menu-open' : '' }}">
+    <a href="#" class="nav-link {{ request()->routeIs('students.index') ? 'active' : '' }}">
         <i class="nav-icon fas fa-tachometer-alt"></i>
         <p>
             Students
@@ -70,8 +70,8 @@
     </a>
     <ul class="nav nav-treeview" style="display: block;">
         <li class="nav-item">
-            <a href="{{ route('student.index') }}"
-                class="nav-link {{ request()->routeIs('student.index') ? 'active' : '' }}">
+            <a href="{{ route('students.index') }}"
+                class="nav-link {{ request()->routeIs('students.index') ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Students List</p>
             </a>
@@ -81,9 +81,9 @@
 @endcanany
 
 
-@canany(['edit_teacher', 'delete_teacher'])
-<li class="nav-item {{ request()->routeIs('teacher.index') ? 'menu-is-opening menu-open' : '' }}">
-    <a href="#" class="nav-link {{ request()->routeIs('teacher.index') ? 'active' : '' }}">
+@canany(['teacher_edit', 'teacher_delete', 'teacher_access'])
+<li class="nav-item {{ request()->routeIs('teachers.index') ? 'menu-is-opening menu-open' : '' }}">
+    <a href="#" class="nav-link {{ request()->routeIs('teachers.index') ? 'active' : '' }}">
         <i class="nav-icon fas fa-tachometer-alt"></i>
         <p>
             Teachers
@@ -92,8 +92,8 @@
     </a>
     <ul class="nav nav-treeview" style="display: block;">
         <li class="nav-item">
-            <a href="{{ route('teacher.index') }}"
-                class="nav-link {{ request()->routeIs('teacher.index') ? 'active' : '' }}">
+            <a href="{{ route('teachers.index') }}"
+                class="nav-link {{ request()->routeIs('teachers.index') ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Teachers List</p>
             </a>
@@ -103,8 +103,8 @@
 @endcanany
 
 @canany(['view_user'])
-<li class="nav-item {{ request()->routeIs('user.index') ? 'menu-is-opening menu-open' : '' }}">
-    <a href="#" class="nav-link {{ request()->routeIs('user.index') ? 'active' : '' }}">
+<li class="nav-item {{ request()->routeIs('users.index') ? 'menu-is-opening menu-open' : '' }}">
+    <a href="#" class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}">
         <i class="nav-icon fas fa-tachometer-alt"></i>
         <p>
             User
@@ -113,7 +113,7 @@
     </a>
     <ul class="nav nav-treeview" style="display: block;">
         <li class="nav-item">
-            <a href="{{ route('user.index') }}" class="nav-link {{ request()->routeIs('user.index') ? 'active' : '' }}">
+            <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>User List</p>
             </a>
