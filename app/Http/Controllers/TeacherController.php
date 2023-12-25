@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\Teacher;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -12,15 +14,17 @@ class TeacherController extends Controller
 {
     public function index(Request $request)
     {
-        $teachers = Teacher::query();
-        if($request->filled('search') ){
-            $teachers = $teachers->where('user_name','like','%'.$request->search);
-        }
-        if($request->filled('from_date') && $request->filled('to_date') ){
-            $teachers = $teachers->whereDate('created_at','>',$request->from_date)
-            ->whereDate('created_at','<',$request->to_date);
-        }
-        $teachers=$teachers->paginate(1);
+        $teachers = User::query()->whereHas('roles', function (Builder $query) {
+            $query->where('id',Role::STUDENT);
+        });
+        // if($request->filled('search') ){
+        //     $teachers = $teachers->where('user_name','like','%'.$request->search);
+        // }
+        // if($request->filled('from_date') && $request->filled('to_date') ){
+        //     $teachers = $teachers->whereDate('created_at','>',$request->from_date)
+        //     ->whereDate('created_at','<',$request->to_date);
+        // }
+        $teachers=$teachers->paginate(5);
 
         return view('teacher.index', compact('teachers'));
         }
@@ -39,7 +43,7 @@ class TeacherController extends Controller
             "password" => ['required'],
 
         ]);
-        $teacher = new Teacher();
+        $teacher = new User();
         $teacher->user_name = $request->user_name;
         $teacher->first_name = $request->first_name;
         $teacher->last_name = $request->last_name;
@@ -48,16 +52,15 @@ class TeacherController extends Controller
 
         $teacher->save();
 
-        return redirect('/teacher/create');
+        return redirect('/teachers/create');
     }
     function edit($id)
     {
 
-        $data['role'] = Role::findOrFail($id);
-        $data['permissions'] = Permission::all();
+        $data['roles'] = User::find($id);
         return view("teacher.edit", $data);
     }
-    function update(Request $request, $id)
+    function update(Request $request,$data)
     {
         $request->validate([
             "user_name" => ['required'],
@@ -72,9 +75,9 @@ class TeacherController extends Controller
     {
         try {
             Role::findOrFail($data)->delete();
-            return to_route('teacher.index')->with('success', 'The Teacher Successfully deleted');
+            return to_route('teachers.index')->with('success', 'The Teacher Successfully deleted');
         } catch (Exception $e) {
-            return to_route('teacher.index')->with('error', $e->getMessage());
+            return to_route('teachers.index')->with('error', $e->getMessage());
         }
     }
 }
