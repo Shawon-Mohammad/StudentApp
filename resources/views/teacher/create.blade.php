@@ -17,26 +17,12 @@ Teacher Create
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('teachers.store',$teachers->$data) }}">
+                        <form method="post" action="{{ route('teachers.store') }}">
                             @csrf
                             <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="user_name" id="user_name"
-                                    name="user_name">
-                                @error('user_name')
-                                    <div class="alert alert-danger mt-1"> {{ $message }} </div>
-                                @enderror
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="Enter first_name" id="first_name"
-                                    name="first_name">
-                                @error('first_name')
-                                    <div class="alert alert-danger mt-1"> {{ $message }} </div>
-                                @enderror
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="Enter last_name" id="last_name"
-                                    name="last_name">
-                                @error('last_name')
+                                <input type="text" class="form-control" placeholder="Enter name" id="name"
+                                    name="name">
+                                @error('name')
                                     <div class="alert alert-danger mt-1"> {{ $message }} </div>
                                 @enderror
                             </div>

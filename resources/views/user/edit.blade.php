@@ -13,13 +13,13 @@
                     <div class="card-header border-0 bg-info">
                         <h3 class="card-title">Create New User</h3>
                         <div class="card-tools">
-                            <a href="{{ route('user.index') }}" class="btn btn-tool btn-primary bg-primary">
+                            <a href="{{ route('users.index') }}" class="btn btn-tool btn-primary bg-primary">
                                 <i class="fas fa-list"></i> List
                             </a>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('user.update') }}" >
+                        <form method="post" action="{{ route('users.update') }}" >
                             @csrf
                             {{-- <form action="../../index.html" method="post"> --}}
                                 <div class="form-group mb-3">

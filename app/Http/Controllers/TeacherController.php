@@ -15,7 +15,7 @@ class TeacherController extends Controller
     public function index(Request $request)
     {
         $teachers = User::query()->whereHas('roles', function (Builder $query) {
-            $query->where('id',Role::STUDENT);
+            $query->where('id',Role::TEACHER);
         });
         // if($request->filled('search') ){
         //     $teachers = $teachers->where('user_name','like','%'.$request->search);
@@ -36,21 +36,19 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "user_name" => ['required'],
-            "first_name" => ['required'],
-            "last_name" => ['required'],
+            "name" => ['required'],
             "email" => ['required'],
             "password" => ['required'],
 
         ]);
         $teacher = new User();
-        $teacher->user_name = $request->user_name;
-        $teacher->first_name = $request->first_name;
-        $teacher->last_name = $request->last_name;
+        $teacher->name = $request->name;
         $teacher->email = $request->email;
         $teacher->password = $request->password;
 
         $teacher->save();
+        $teacher->roles()->sync(Role::TEACHER);
+
 
         return redirect('/teachers/create');
     }
@@ -60,21 +58,27 @@ class TeacherController extends Controller
         $data['roles'] = User::find($id);
         return view("teacher.edit", $data);
     }
-    function update(Request $request,$data)
+    function update(Request $request,$id)
     {
         $request->validate([
-            "user_name" => ['required'],
-            "first_name" => ['required'],
-            "last_name" => ['required'],
+            "name" => ['required'],
             "email" => ['required'],
             "password" => ['required'],
         ]);
+        $teacher = User::find($id);
+        $teacher->name = $request->name;
+        $teacher->email = $request->email;
+        $teacher->password = $request->password;
+        $teacher->save();
+
+        $teacher->roles()->sync(Role::TEACHER);
+
     }
 
     function delete($data)
     {
         try {
-            Role::findOrFail($data)->delete();
+            User::findOrFail($data)->delete();
             return to_route('teachers.index')->with('success', 'The Teacher Successfully deleted');
         } catch (Exception $e) {
             return to_route('teachers.index')->with('error', $e->getMessage());

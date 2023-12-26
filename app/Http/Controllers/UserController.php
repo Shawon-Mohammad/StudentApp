@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Permission;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -13,14 +14,14 @@ class UserController extends Controller
 
     function index()
     {
-        $roles = Role::all();
-        return view('roles.index', compact('roles'));
+        $users = User::all();
+        return view('users.index', compact('users'));
     }
 
     function create()
     {
-        $roles  = Role::Orderby('user_name', 'asc')->paginate(10);
-        return view('roles.create', compact('roles'));
+        $users  = User::Orderby('user_name', 'asc')->paginate(10);
+        return view('users.create', compact('users'));
     }
 
     function store(Request $request)
@@ -34,42 +35,42 @@ class UserController extends Controller
             "password" => ['required'],
 
         ]);
-        $role = new Role();
-        $role->user_name = $request->user_name;
-        $role->first_name = $request->first_name;
-        $role->last_name = $request->last_name;
-        $role->email = $request->email;
-        $role->password = $request->password;
+        $user = new User();
+        $user->user_name = $request->user_name;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->password = $request->password;
 
-        $role->save();
+        $user->save();
 
-        return redirect('/roles/create');
+        return redirect('/users/create');
     }
 
     function delete($data)
     {
-        Role::findOrFail($data)->delete();
-        return back()->with('success', 'Category Deleted Successfully');
+        User::findOrFail($data)->delete();
+        return back()->with('success', 'User Deleted Successfully');
     }
 
 
     function edit($data)
     {
-        return view('roles.edit', [
-            'roles' =>  Role::findOrFail($data),
+        return view('users.edit', [
+            'users' =>  User::findOrFail($data),
         ]);
     }
 
     function update(Request $request)
     {
-        $role = Role::findOrFail($request->category_id);
-        $role->user_name = $request->user_name;
-        $role->first_name = $request->first_name;
-        $role->last_name = $request->last_name;
-        $role->email = $request->email;
-        $role->password = $request->password;
-        $role->save();
+        $user = User::findOrFail($request->category_id);
+        $user->user_name = $request->user_name;
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->save();
 
-        return back()->with('success', 'Role Deleted Successfully');
+        return back()->with('success', 'User Deleted Successfully');
     }
 }

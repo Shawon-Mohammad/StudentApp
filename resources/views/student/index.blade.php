@@ -16,11 +16,9 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>user_name</th>
-                                    <th>first_name</th>
-                                    <th>last_name</th>
+                                    <th>name</th>
                                     <th>email</th>
-                                    <th>password</th>
+                                    {{-- <th>password</th> --}}
                                     <th>Created at</th>
                                     <th>Updated at</th>
                                     <th>Action</th>
@@ -31,22 +29,16 @@
                                 @foreach ($students as $student)
                                     <tr>
                                         <td>{{ $student->id }}</td>
-                                        <td>{{ $student->user_name }}</td>
-                                        <td>{{ $student->first_name }}</td>
-                                        <td>{{ $student->last_name }}</td>
+                                        <td>{{ $student->name }}</td>
                                         <td>{{ $student->email }}</td>
-                                        <td>{{ $student->password }}</td>
+                                        {{-- <td>{{ $student->password }}</td> --}}
                                         <td>{{ $student->created_at }}</td>
                                         <td>{{ $student->updated_at }}</td>
                                         <td>
-                                            @can('edit_student')
-                                                <a class="btn btn-success"
-                                                    href="{{ route('student.edit', $student->id) }}">Edit</a>
-                                            @endcan
-                                            @can('delete_student')
-                                                <a class="btn btn-danger"
-                                                    href="{{ route('student.delete', $student->id) }}">Delete</a>
-                                            @endcan
+                                            <a class="btn btn-success"
+                                                href="{{ route('students.edit', $student->id) }}">Edit</a>
+                                            <a class="btn btn-danger"
+                                                href="{{ route('students.delete', $student->id) }}">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -15,9 +15,7 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>user_name</th>
-                                    <th>first_name</th>
-                                    <th>last_name</th>
+                                    <th>name</th>
                                     <th>email</th>
                                     {{-- <th>password</th> --}}
                                     <th>Created at</th>
@@ -30,9 +28,7 @@
                                 @foreach ($teachers as $teacher)
                                     <tr>
                                         <td>{{ $teacher->id }}</td>
-                                        <td>{{ $teacher->user_name }}</td>
-                                        <td>{{ $teacher->first_name }}</td>
-                                        <td>{{ $teacher->last_name }}</td>
+                                        <td>{{ $teacher->name }}</td>
                                         <td>{{ $teacher->email }}</td>
                                         {{-- <td>{{ $teacher->password }}</td> --}}
                                         <td>{{ $teacher->created_at }}</td>

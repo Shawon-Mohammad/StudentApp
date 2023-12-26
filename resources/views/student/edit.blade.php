@@ -10,13 +10,13 @@
                     <div class="card-header border-0 bg-info">
                         <h3 class="card-title">Create New Student</h3>
                         <div class="card-tools">
-                            <a href="{{ route('student.index') }}" class="btn btn-tool btn-primary bg-primary">
+                            <a href="{{ route('students.index') }}" class="btn btn-tool btn-primary bg-primary">
                                 <i class="fas fa-list"></i> List
                             </a>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('student.update', $student->id) }}">
+                        <form method="post" action="{{ route('students.update', $student->id) }}">
                             @csrf
                             <div class="form-group mb-3">
                                 <input type="text" class="form-control" placeholder="user_name" id="user_name"

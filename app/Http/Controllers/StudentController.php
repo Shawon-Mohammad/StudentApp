@@ -36,21 +36,18 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "user_name" => ['required'],
-            "first_name" => ['required'],
-            "last_name" => ['required'],
+            "name" => ['required'],
             "email" => ['required'],
             "password" => ['required'],
 
         ]);
         $student = new User();
-        $student->user_name = $request->user_name;
-        $student->first_name = $request->first_name;
-        $student->last_name = $request->last_name;
+        $student->name = $request->name;
         $student->email = $request->email;
         $student->password = $request->password;
 
         $student->save();
+        $student->roles()->sync(Role::STUDENT);
 
         return redirect('/students/create');
     }
@@ -63,18 +60,24 @@ class StudentController extends Controller
     function update(Request $request, $id)
     {
         $request->validate([
-            "user_name" => ['required'],
-            "first_name" => ['required'],
-            "last_name" => ['required'],
+            "name" => ['required'],
             "email" => ['required'],
             "password" => ['required'],
         ]);
+        $student = User::find($id)();
+        $student->name = $request->name;
+        $student->email = $request->email;
+        $student->password = $request->password;
+
+        $student->save();
+        $student->roles()->sync(Role::STUDENT);
+
     }
 
     function delete($data)
     {
         try {
-            Role::findOrFail($data)->delete();
+            User::findOrFail($data)->delete();
             return to_route('students.index')->with('success', 'The Student Successfully deleted');
         } catch (Exception $e) {
             return to_route('students.index')->with('error', $e->getMessage());
