@@ -23,23 +23,9 @@
                             @csrf
                             {{-- <form action="../../index.html" method="post"> --}}
                                 <div class="form-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Enter user name" id="user_name"
-                                        name="user_name">
-                                    @error('user_name')
-                                        <div class="alert alert-danger mt-1"> {{ $message }} </div>
-                                    @enderror
-                                </div>
-                                <div class="form-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Enter first name" id="first_name"
-                                        name="first_name">
-                                    @error('first_name')
-                                        <div class="alert alert-danger mt-1"> {{ $message }} </div>
-                                    @enderror
-                                </div>
-                                <div class="form-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Enter last name" id="last_name"
-                                        name="last_name">
-                                    @error('last_name')
+                                    <input type="text" class="form-control" placeholder="Enter user name" id="name"
+                                        name="name">
+                                    @error('name')
                                         <div class="alert alert-danger mt-1"> {{ $message }} </div>
                                     @enderror
                                 </div>

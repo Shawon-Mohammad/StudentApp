@@ -102,7 +102,7 @@
 </li>
 @endcanany
 
-@canany(['view_user'])
+@canany(['user_access'])
 <li class="nav-item {{ request()->routeIs('users.index') ? 'menu-is-opening menu-open' : '' }}">
     <a href="#" class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}">
         <i class="nav-icon fas fa-tachometer-alt"></i>

@@ -16,11 +16,9 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>user_name</th>
-                                    <th>first_name</th>
-                                    <th>last_name</th>
+                                    <th>name</th>
                                     <th>email</th>
-                                    <th>password</th>
+                                    {{-- <th>password</th> --}}
                                     <th>Created at</th>
                                     <th>Updated at</th>
                                     <th>Action</th>
@@ -31,11 +29,9 @@
                                 @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $user->id }}</td>
-                                        <td>{{ $user->user_name }}</td>
-                                        <td>{{ $user->first_name }}</td>
-                                        <td>{{ $user->last_name }}</td>
+                                        <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->password }}</td>
+                                        {{-- <td>{{ $user->password }}</td> --}}
                                         <td>{{ $user->created_at }}</td>
                                         <td>{{ $user->updated_at }}</td>
                                         <td>
@@ -47,7 +43,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $users->links() }}
+                        {{-- {{ $users->links() }} --}}
                     </div>
                 </div>
             </div>

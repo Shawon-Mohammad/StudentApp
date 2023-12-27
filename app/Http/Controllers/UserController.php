@@ -4,73 +4,78 @@ namespace App\Http\Controllers;
 
 use App\Models\Permission;
 use App\Models\Role;
+use App\Models\Teacher;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
+use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
-
-
-    function index()
+    public function index(Request $request)
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
+        $users = User::query()->whereHas('roles', function (Builder $query) {
+            $query->where('id',Role::TEACHER);
+        });
+
+        $users=$users->paginate(5);
+
+        return view('user.index', compact('users'));
+        }
+
+    public function create()
+    {
+        return view('user.create');
     }
-
-    function create()
+    public function store(Request $request)
     {
-        $users  = User::Orderby('user_name', 'asc')->paginate(10);
-        return view('users.create', compact('users'));
-    }
-
-    function store(Request $request)
-    {
-
         $request->validate([
-            "user_name" => ['required'],
-            "first_name" => ['required'],
-            "last_name" => ['required'],
+            "name" => ['required'],
             "email" => ['required'],
             "password" => ['required'],
 
         ]);
         $user = new User();
-        $user->user_name = $request->user_name;
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
+        $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
 
         $user->save();
+        $user->roles()->sync(Role::TEACHER);
+
 
         return redirect('/users/create');
+    }
+    function edit($id)
+    {
+
+        $data['roles'] = User::find($id);
+        return view("user.edit", $data);
+    }
+    function update(Request $request,$id)
+    {
+        $request->validate([
+            "name" => ['required'],
+            "email" => ['required'],
+            "password" => ['required'],
+        ]);
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->save();
+
+        $user->roles()->sync(Role::TEACHER);
+
     }
 
     function delete($data)
     {
-        User::findOrFail($data)->delete();
-        return back()->with('success', 'User Deleted Successfully');
-    }
-
-
-    function edit($data)
-    {
-        return view('users.edit', [
-            'users' =>  User::findOrFail($data),
-        ]);
-    }
-
-    function update(Request $request)
-    {
-        $user = User::findOrFail($request->category_id);
-        $user->user_name = $request->user_name;
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->save();
-
-        return back()->with('success', 'User Deleted Successfully');
+        try {
+            User::findOrFail($data)->delete();
+            return to_route('users.index')->with('success', 'The User Successfully deleted');
+        } catch (Exception $e) {
+            return to_route('users.index')->with('error', $e->getMessage());
+        }
     }
 }
