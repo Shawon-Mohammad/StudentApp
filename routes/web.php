@@ -3,6 +3,8 @@
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SectionController;
+use App\Http\Controllers\ClassController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
@@ -65,6 +67,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/edit/{data}', [UserController::class, 'edit'])->name('users.edit');
     Route::post('/users/update/{data}', [UserController::class, 'update'])->name('users.update');
     Route::get('/users/delete/{data}', [UserController::class, 'delete'])->name('users.delete');
+
+    Route::get('/sections', [SectionController::class, 'index'])->name('sections.index');
+    Route::get('/sections/create', [SectionController::class, 'create'])->name('sections.create');
+    Route::post('/sections/store', [SectionController::class, 'store'])->name('sections.store');
+    Route::get('/sections/edit/{data}', [SectionController::class, 'edit'])->name('sections.edit');
+    Route::post('/sections/update/{data}', [SectionController::class, 'update'])->name('sections.update');
+    Route::get('/sections/delete/{data}', [SectionController::class, 'delete'])->name('sections.delete');
+
+    Route::get('/classes', [ClassController::class, 'index'])->name('classes.index');
+    Route::get('/classes/create', [ClassController::class, 'create'])->name('classes.create');
+    Route::post('/classes/store', [ClassController::class, 'store'])->name('classes.store');
+    Route::get('/classes/edit/{data}', [ClassController::class, 'edit'])->name('classes.edit');
+    Route::post('/classes/update/{data}', [ClassController::class, 'update'])->name('classes.update');
+    Route::get('/classes/delete/{data}', [ClassController::class, 'delete'])->name('classes.delete');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
