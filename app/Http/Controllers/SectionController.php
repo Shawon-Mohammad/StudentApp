@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Permission;
-use App\Models\Role;
+
 use App\Models\Section;
-use App\Models\Student;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Exception;
 use Illuminate\Http\Request;
@@ -15,9 +12,7 @@ class SectionController extends Controller
 {
     public function index(Request $request)
     {
-        $sections = Section::query()->whereHas('roles', function (Builder $query) {
-            $query->where('id',Role::STUDENT);
-        });
+        $sections = Section::query();
         $sections = $sections->paginate(5);
 
         return view('section.index', compact('sections'));
@@ -39,7 +34,6 @@ class SectionController extends Controller
 
 
         $sections->save();
-        $sections->roles()->sync(Role::STUDENT);
 
         return redirect('/sections/create');
     }
@@ -59,8 +53,6 @@ class SectionController extends Controller
         $sections->name = $request->name;
 
         $sections->save();
-        $sections->roles()->sync(Role::STUDENT);
-
     }
 
     function delete($data)

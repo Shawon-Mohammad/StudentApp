@@ -26,6 +26,11 @@ class RoleSeeder extends Seeder
                 'title' => 'Student',
                 'created_at' => now(),
             ],
+            [
+                'id' => 4,
+                'title' => 'User',
+                'created_at' => now(),
+            ],
 
         ];
 

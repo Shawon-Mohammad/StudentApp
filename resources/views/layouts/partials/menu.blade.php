@@ -124,7 +124,7 @@
     </li>
 @endcanany
 
-@canany(['class_access'])
+@canany(['klass_access'])
     <li class="nav-item {{ request()->routeIs('classes.index') ? 'menu-is-opening menu-open' : '' }}">
         <a href="#" class="nav-link {{ request()->routeIs('classes.index') ? 'active' : '' }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>

@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Permission;
-use App\Models\Role;
-use App\Models\Student;
-use App\Models\User;
+use App\Models\klass;
 use Illuminate\Database\Eloquent\Builder;
 use Exception;
 use Illuminate\Http\Request;
@@ -14,9 +11,7 @@ class KlassController extends Controller
 {
     public function index(Request $request)
     {
-        $classes = User::query()->whereHas('roles', function (Builder $query) {
-            $query->where('id',Role::STUDENT);
-        });
+        $classes = klass::query();
 
         $classes = $classes->paginate(5);
 
@@ -31,22 +26,21 @@ class KlassController extends Controller
     {
         $request->validate([
             "name" => ['required'],
-            "email" => ['required'],
-            "password" => ['required'],
+            "section_id" => ['required'],
 
         ]);
-        $classes = new User();
-        $classes->name = $request->name;
+        $class = new klass();
+        $class->name = $request->name;
+        $class->section_id = $request->section_id;
 
-        $classes->save();
-        $classes->roles()->sync(Role::STUDENT);
+        $class->save();
 
         return redirect('/classes/create');
     }
     function edit($id)
     {
 
-        $data['classes'] = User::find($id);
+        $data['classes'] = klass::find($id);
         return view("class.edit", $data);
     }
     function update(Request $request, $id)
@@ -55,19 +49,18 @@ class KlassController extends Controller
             "name" => ['required'],
             "section_id" => ['required'],
         ]);
-        $classes = User::find($id)();
-        $classes->name = $request->name;
-        $classes->section_id = $request->section_id;
+        $class = klass::find($id)();
+        $class->name = $request->name;
+        $class->section_id = $request->section_id;
 
-        $classes->save();
-        $classes->roles()->sync(Role::STUDENT);
+        $class->save();
 
     }
 
     function delete($data)
     {
         try {
-            User::findOrFail($data)->delete();
+            klass::findOrFail($data)->delete();
             return to_route('class.index')->with('success', 'The Class Successfully deleted');
         } catch (Exception $e) {
             return to_route('class.index')->with('error', $e->getMessage());
