@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Exception;
 use Illuminate\Http\Request;
 
-class ClassController extends Controller
+class KlassController extends Controller
 {
     public function index(Request $request)
     {
@@ -53,11 +53,11 @@ class ClassController extends Controller
     {
         $request->validate([
             "name" => ['required'],
-            "email" => ['required'],
-            "password" => ['required'],
+            "section_id" => ['required'],
         ]);
         $classes = User::find($id)();
         $classes->name = $request->name;
+        $classes->section_id = $request->section_id;
 
         $classes->save();
         $classes->roles()->sync(Role::STUDENT);

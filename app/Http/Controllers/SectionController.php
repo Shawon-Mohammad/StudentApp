@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Permission;
 use App\Models\Role;
+use App\Models\Section;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,7 +15,7 @@ class SectionController extends Controller
 {
     public function index(Request $request)
     {
-        $sections = User::query()->whereHas('roles', function (Builder $query) {
+        $sections = Section::query()->whereHas('roles', function (Builder $query) {
             $query->where('id',Role::STUDENT);
         });
         $sections = $sections->paginate(5);
@@ -30,11 +31,10 @@ class SectionController extends Controller
     {
         $request->validate([
             "name" => ['required'],
-            "email" => ['required'],
-            "password" => ['required'],
+
 
         ]);
-        $sections = new User();
+        $sections = new Section();
         $sections->name = $request->name;
 
 
@@ -46,17 +46,16 @@ class SectionController extends Controller
     function edit($id)
     {
 
-        $data['sections'] = User::find($id);
+        $data['sections'] = Section::find($id);
         return view("section.edit", $data);
     }
     function update(Request $request, $id)
     {
         $request->validate([
             "name" => ['required'],
-            "email" => ['required'],
-            "password" => ['required'],
+
         ]);
-        $sections = User::find($id)();
+        $sections = Section::find($id)();
         $sections->name = $request->name;
 
         $sections->save();
@@ -67,7 +66,7 @@ class SectionController extends Controller
     function delete($data)
     {
         try {
-            User::findOrFail($data)->delete();
+            Section::findOrFail($data)->delete();
             return to_route('sections.index')->with('success', 'The Sections Successfully deleted');
         } catch (Exception $e) {
             return to_route('sections.index')->with('error', $e->getMessage());
