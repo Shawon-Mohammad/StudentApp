@@ -165,3 +165,45 @@
 </li>
 @endcanany
 
+
+@canany(['book_access'])
+<li class="nav-item {{ request()->routeIs('books.index') ? 'menu-is-opening menu-open' : '' }}">
+    <a href="#" class="nav-link {{ request()->routeIs('books.index') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <p>
+            Book
+            <i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview" style="display: block;">
+        <li class="nav-item">
+            <a href="{{ route('books.index') }}" class="nav-link {{ request()->routeIs('books.index') ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Book List</p>
+            </a>
+        </li>
+    </ul>
+</li>
+@endcanany
+
+
+@canany(['author_access'])
+<li class="nav-item {{ request()->routeIs('authors.index') ? 'menu-is-opening menu-open' : '' }}">
+    <a href="#" class="nav-link {{ request()->routeIs('authors.index') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <p>
+            Author
+            <i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview" style="display: block;">
+        <li class="nav-item">
+            <a href="{{ route('authors.index') }}" class="nav-link {{ request()->routeIs('authors.index') ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Author List</p>
+            </a>
+        </li>
+    </ul>
+</li>
+@endcanany
+

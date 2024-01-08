@@ -159,6 +159,41 @@ class PermissionSeeder extends Seeder
                 'title' => 'class_attendence_access',
             ],
 
+            //Book
+            [
+                'title' => 'book_create',
+            ],
+            [
+                'title' => 'book_edit',
+            ],
+            [
+                'title' => 'book_show',
+            ],
+            [
+                'title' => 'book_delete',
+            ],
+            [
+                'title' => 'book_access',
+            ],
+
+            //Author
+            [
+                'title' => 'author_create',
+            ],
+            [
+                'title' => 'author_edit',
+            ],
+            [
+                'title' => 'author_show',
+            ],
+            [
+                'title' => 'author_delete',
+            ],
+            [
+                'title' => 'author_access',
+            ],
+
+
         ];
 
         Permission::insert($permissions);

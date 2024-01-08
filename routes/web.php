@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SectionController;
-use App\Http\Controllers\ClassController;
+use App\Http\Controllers\KlassController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
@@ -75,12 +77,26 @@ Route::middleware('auth')->group(function () {
     Route::post('/sections/update/{data}', [SectionController::class, 'update'])->name('sections.update');
     Route::get('/sections/delete/{data}', [SectionController::class, 'delete'])->name('sections.delete');
 
-    Route::get('/classes', [ClassController::class, 'index'])->name('classes.index');
-    Route::get('/classes/create', [ClassController::class, 'create'])->name('classes.create');
-    Route::post('/classes/store', [ClassController::class, 'store'])->name('classes.store');
-    Route::get('/classes/edit/{data}', [ClassController::class, 'edit'])->name('classes.edit');
-    Route::post('/classes/update/{data}', [ClassController::class, 'update'])->name('classes.update');
-    Route::get('/classes/delete/{data}', [ClassController::class, 'delete'])->name('classes.delete');
+    Route::get('/classes', [KlassController::class, 'index'])->name('classes.index');
+    Route::get('/classes/create', [KlassController::class, 'create'])->name('classes.create');
+    Route::post('/classes/store', [KlassController::class, 'store'])->name('classes.store');
+    Route::get('/classes/edit/{data}', [KlassController::class, 'edit'])->name('classes.edit');
+    Route::post('/classes/update/{data}', [KlassController::class, 'update'])->name('classes.update');
+    Route::get('/classes/delete/{data}', [KlassController::class, 'delete'])->name('classes.delete');
+
+    Route::get('/books', [BookController::class, 'index'])->name('books.index');
+    Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
+    Route::post('/books/store', [BookController::class, 'store'])->name('books.store');
+    Route::get('/books/edit/{data}', [BookController::class, 'edit'])->name('books.edit');
+    Route::post('/books/update/{data}', [BookController::class, 'update'])->name('books.update');
+    Route::get('/books/delete/{data}', [BookController::class, 'delete'])->name('books.delete');
+
+    Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
+    Route::get('/authors/create', [AuthorController::class, 'create'])->name('authors.create');
+    Route::post('/authors/store', [AuthorController::class, 'store'])->name('authors.store');
+    Route::get('/authors/edit/{data}', [AuthorController::class, 'edit'])->name('authors.edit');
+    Route::post('/authors/update/{data}', [AuthorController::class, 'update'])->name('authors.update');
+    Route::get('/authors/delete/{data}', [AuthorController::class, 'delete'])->name('authors.delete');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
