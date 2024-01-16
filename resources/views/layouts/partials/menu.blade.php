@@ -207,3 +207,44 @@
 </li>
 @endcanany
 
+@canany(['class_student_access'])
+<li class="nav-item {{ request()->routeIs('class_students.index') ? 'menu-is-opening menu-open' : '' }}">
+    <a href="#" class="nav-link {{ request()->routeIs('class_students.index') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <p>
+            Class Student
+            <i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview" style="display: block;">
+        <li class="nav-item">
+            <a href="{{ route('class_students.index') }}" class="nav-link {{ request()->routeIs('class_students.index') ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Class Student List</p>
+            </a>
+        </li>
+    </ul>
+</li>
+@endcanany
+
+
+@canany(['class_attendence_access'])
+<li class="nav-item {{ request()->routeIs('class_attendences.index') ? 'menu-is-opening menu-open' : '' }}">
+    <a href="#" class="nav-link {{ request()->routeIs('class_attendences.index') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <p>
+            Class Attendence
+            <i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview" style="display: block;">
+        <li class="nav-item">
+            <a href="{{ route('class_attendences.index') }}" class="nav-link {{ request()->routeIs('class_attendences.index') ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Class Attendence List</p>
+            </a>
+        </li>
+    </ul>
+</li>
+@endcanany
+

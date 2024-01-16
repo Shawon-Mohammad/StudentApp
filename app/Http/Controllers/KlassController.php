@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\klass;
+use App\Models\Section;
 use Illuminate\Database\Eloquent\Builder;
 use Exception;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ class KlassController extends Controller
 {
     public function index(Request $request)
     {
-        $classes = klass::query();
+        $classes = Klass::query();
 
         $classes = $classes->paginate(5);
 
@@ -29,7 +30,7 @@ class KlassController extends Controller
             "section_id" => ['required'],
 
         ]);
-        $class = new klass();
+        $class = new Klass();
         $class->name = $request->name;
         $class->section_id = $request->section_id;
 
@@ -40,7 +41,9 @@ class KlassController extends Controller
     function edit($id)
     {
 
-        $data['classes'] = klass::find($id);
+        $data['klass'] = klass::find($id);
+        $data['sections'] = Section::all();
+
         return view("class.edit", $data);
     }
     function update(Request $request, $id)
@@ -49,11 +52,12 @@ class KlassController extends Controller
             "name" => ['required'],
             "section_id" => ['required'],
         ]);
-        $class = klass::find($id)();
+        $class = Klass::find($id);
         $class->name = $request->name;
         $class->section_id = $request->section_id;
 
         $class->save();
+        return redirect('/classes');
 
     }
 

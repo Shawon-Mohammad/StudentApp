@@ -20,8 +20,8 @@
                         <form method="post" action="{{ route('sections.store') }}">
                             @csrf
                             <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="Enter name" id="name"
-                                    name="name">
+                                <input type="text" class="form-control" placeholder="name" id="name"
+                                    name="name" value="{{ $section->name }}">
                                 @error('name')
                                     <div class="alert alert-danger mt-1"> {{ $message }} </div>
                                 @enderror

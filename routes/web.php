@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ClassAttendenceController;
+use App\Http\Controllers\ClassStudentController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -97,6 +99,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/authors/edit/{data}', [AuthorController::class, 'edit'])->name('authors.edit');
     Route::post('/authors/update/{data}', [AuthorController::class, 'update'])->name('authors.update');
     Route::get('/authors/delete/{data}', [AuthorController::class, 'delete'])->name('authors.delete');
+
+    Route::get('/class_attendences', [ClassAttendenceController::class, 'index'])->name('class_attendences.index');
+    Route::get('/class_attendences/create', [ClassAttendenceController::class, 'create'])->name('class_attendences.create');
+    Route::post('/class_attendences/store', [ClassAttendenceController::class, 'store'])->name('class_attendences.store');
+    Route::get('/class_attendences/edit/{data}', [ClassAttendenceController::class, 'edit'])->name('class_attendences.edit');
+    Route::post('/class_attendences/update/{data}', [ClassAttendenceController::class, 'update'])->name('class_attendences.update');
+    Route::get('/class_attendences/delete/{data}', [ClassAttendenceController::class, 'delete'])->name('class_attendences.delete');
+
+    Route::get('/class_students', [ClassStudentController::class, 'index'])->name('class_students.index');
+    Route::get('/class_students/create', [ClassStudentController::class, 'create'])->name('class_students.create');
+    Route::post('/class_students/store', [ClassStudentController::class, 'store'])->name('class_students.store');
+    Route::get('/class_students/edit/{data}', [ClassStudentController::class, 'edit'])->name('class_students.edit');
+    Route::post('/class_students/update/{data}', [ClassStudentController::class, 'update'])->name('class_students.update');
+    Route::get('/class_students/delete/{data}', [ClassStudentController::class, 'delete'])->name('class_students.delete');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

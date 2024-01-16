@@ -16,18 +16,21 @@ Class Create
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('classes.update' , $class->id) }}">
+                        <form method="post" action="{{ route('classes.update' , $klass->id) }}">
                             @csrf
                             <div class="form-group mb-3">
                                 <input type="text" class="form-control" placeholder="name" id="name"
-                                    name="name" value="{{ $class->name }}">
+                                    name="name" value="{{old("name",$klass->name) }}">
                                 @error('name')
                                     <div class="alert alert-danger mt-1"> {{ $message }} </div>
                                 @enderror
                             </div>
                             <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="Enter section_id" id="section_id"
-                                    name="section_id" value="{{ $class->section_id }}">
+                                <select name="section_id" id="section_id">
+                                    @foreach ($sections as $section)
+                                    <option value="{{$section->id}}" {{old("section_id",$klass->section_id) == $section->id ? "selected":" "}}>{{$section->name}}</option>
+                                    @endforeach
+                                </select>
                                 @error('section_id')
                                     <div class="alert alert-danger mt-1"> {{ $message }} </div>
                                 @enderror

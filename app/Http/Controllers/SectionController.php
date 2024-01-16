@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Klass;
 use App\Models\Section;
 use Illuminate\Database\Eloquent\Builder;
 use Exception;
@@ -41,6 +41,8 @@ class SectionController extends Controller
     {
 
         $data['sections'] = Section::find($id);
+        $data['klass'] = Klass::all();
+
         return view("section.edit", $data);
     }
     function update(Request $request, $id)
@@ -49,10 +51,12 @@ class SectionController extends Controller
             "name" => ['required'],
 
         ]);
-        $sections = Section::find($id)();
+        $sections = Section::find($id);
         $sections->name = $request->name;
 
         $sections->save();
+
+        return redirect('/sections');
     }
 
     function delete($data)

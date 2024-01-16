@@ -16,11 +16,11 @@ Section Create
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('sections.update' , $section->id) }}">
+                        <form method="post" action="{{ route('sections.update' , $sections->id) }}">
                             @csrf
                             <div class="form-group mb-3">
                                 <input type="text" class="form-control" placeholder="name" id="name"
-                                    name="name" value="{{ $section->name }}">
+                                    name="name" value="{{ $sections->name }}">
                                 @error('name')
                                     <div class="alert alert-danger mt-1"> {{ $message }} </div>
                                 @enderror

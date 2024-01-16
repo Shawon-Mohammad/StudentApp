@@ -193,6 +193,39 @@ class PermissionSeeder extends Seeder
                 'title' => 'author_access',
             ],
 
+            //Class Student
+            [
+                'title' => 'class_student_create',
+            ],
+            [
+                'title' => 'class_student_edit',
+            ],
+            [
+                'title' => 'class_student_show',
+            ],
+            [
+                'title' => 'class_student_delete',
+            ],
+            [
+                'title' => 'class_student_access',
+            ],
+
+            //Class Attendence
+            [
+                'title' => 'class_attendence_create',
+            ],
+            [
+                'title' => 'class_attendence_edit',
+            ],
+            [
+                'title' => 'class_attendence_show',
+            ],
+            [
+                'title' => 'class_attendence_delete',
+            ],
+            [
+                'title' => 'class_attendence_access',
+            ],
 
         ];
 
